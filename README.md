@@ -1,4 +1,4 @@
-# GRIB2 decoder in the client
+# GRIB2 decoder in the browser
 This respository contains a decoder of GRIB2 files in javascript. You can try with your own GRIB2 files in [https://bluenetcat.github.io/grib22json](https://bluenetcat.github.io/grib22json/). The GRIB2 format was created by the World Meteorological Organization (WMO) and it is an [accepted standard](http://docs.opengeospatial.org/is/16-060r2/16-060r2.html) of the Open Geospatial Consortium (OGC).
 
 ## Introduction
