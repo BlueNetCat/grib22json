@@ -1,5 +1,5 @@
 # GRIB2 decoder in the client
-This respository contains a decoder of GRIB2 files in javascript. You can try with your own GRIB2 files in [https://bluenetcataccio4.github.io/GRIB2/](https://bluenetcataccio4.github.io/GRIB2/). The GRIB2 format was created by the World Meteorological Organization (WMO) and it is an [accepted standard](http://docs.opengeospatial.org/is/16-060r2/16-060r2.html) of the Open Geospatial Consortium (OGC).
+This respository contains a decoder of GRIB2 files in javascript. You can try with your own GRIB2 files in [https://bluenetcat.github.io/grib22json](https://bluenetcat.github.io/grib22json/). The GRIB2 format was created by the World Meteorological Organization (WMO) and it is an [accepted standard](http://docs.opengeospatial.org/is/16-060r2/16-060r2.html) of the Open Geospatial Consortium (OGC).
 
 ## Introduction
 As far as the author knows, most web applications decode the GRIB2 files in the server and then send them to the client. For example the application from Cameron Beccario ([https://earth.nullschool.net/](https://earth.nullschool.net/)) decodes the GRIB2 to JSON on the server (Java-app) and then formats it in his own propietary binary format to reduce the file size for transmission to the client. You can find the GRIB2json server side code here: [https://github.com/cambecc/grib2json](https://github.com/cambecc/grib2json).
