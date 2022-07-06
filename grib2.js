@@ -1,8 +1,12 @@
+// Author: Gerard Llorach
+// License: MIT
+// https://github.com/BlueNetCat/grib22json
+
+// Official standard
+// https://library.wmo.int/doc_num.php?explnum_id=10722
+
 // All info taken from:
 // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/
-
-// C implementation
-// https://github.com/weathersource/wgrib2
 
 // European info
 // https://apps.ecmwf.int/codes/grib/format/grib2/templates/5/2
@@ -11,6 +15,8 @@
 
 // WMO Information Systems
 // https://community.wmo.int/activity-areas/wis
+// C implementation
+// https://github.com/weathersource/wgrib2
 
 class GRIB2 {
 

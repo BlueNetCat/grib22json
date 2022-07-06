@@ -1,4 +1,6 @@
-
+// Author: Gerard Llorach
+// License: MIT
+// https://github.com/BlueNetCat/grib22json
 
 //fetch('COSMODE_single_level_elements_PS_2018020500_000.grib2')
 //fetch('COSMODE_single_level_elements_ASWDIR_S_2018011803_006.grib2')
@@ -746,7 +748,9 @@ const decodeSection = function (buffer, section) {
         // Decode bytes
         let byteContentBuffer = buffer.slice(prop.startIndex - 1, prop.startIndex - 1 + prop.size);
         let tempPropContent = decodeByte(byteContentBuffer, prop.type);
-
+        
+        // Store raw bytes (for debugging purposes)
+        prop.bytes = byteContentBuffer;
 
         // Regulations
         // https://apps.ecmwf.int/codes/grib/format/grib2/regulations/
