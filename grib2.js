@@ -3279,7 +3279,7 @@ class GRIB2 {
                 {
                     startIndex: 7,
                     size: 1,
-                    content: 0, // Meteorological Products
+                    content: null, // Meteorological Products
                     type: 'uint8',
                     table: '0.0',
                     info: 'Discipline (From Table 0.0)' // 1 to 10; Discipline (From Table 0.0)
@@ -3292,7 +3292,7 @@ class GRIB2 {
                 {
                     startIndex: 8,
                     size: 1,
-                    content: 2,
+                    content: null,
                     type: 'uint8',
                     info: 'Edition number - 2 for GRIB2'
                 },

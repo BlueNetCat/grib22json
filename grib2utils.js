@@ -94,6 +94,16 @@ const decodeGRIB2Buffer = function (buffer, myGrib) {
     let sectionHeader = buffer.slice(0, 16);
     decodeSection(sectionHeader, myGrib.dataTemplate[0]);
 
+    // Check if it is GRIB2
+    if (myGrib.dataTemplate[0][3].content !== 2){
+        console.error("This is not a GRIB2. File edition number: " + myGrib.dataTemplate[0][3].content);
+        let str = '** Section 0 <info>: <content> ** \n';
+        for (let i = 0; i < myGrib.dataTemplate[0].length; i++)
+            str += myGrib.dataTemplate[0][i].info + ": " + myGrib.dataTemplate[0][i].content + "\n";
+        console.error(str);
+        return;
+    }
+
     // Separate section buffers
     let sectionByteIndex = 16;
     let sectionBuffers = myGrib.sectionBuffers;
