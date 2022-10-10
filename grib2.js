@@ -766,6 +766,195 @@ class GRIB2 {
             255: 'Missing'
         },
         // TODO 4.11 to 4.244
+        // TODO 4.2-X-Y, where X is the Discipline (Table 0.0) and Y is the parameter category
+        '4.2-0-0': { // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-2-0-0.shtml
+            0: { parameter: 'Temperature', units: 'K', abbreviation: 'TMP' },
+            1: { parameter: 'Virtual Temperature', units: 'K', abbreviation: 'VTMP' },
+            2: { parameter: 'Potential Temperature', units: 'K', abbreviation: 'POT' },
+            3: { parameter: 'Pseudo-Adiabatic Potential Temperature(or Equivalent Potential Temperature)', units: 'K', abbreviation: 'EPOT' },
+            4: { parameter: 'Maximum Temperature*', units: 'K', abbreviation: 'TMAX' },
+            5: { parameter: 'Minimum Temperature*', units: 'K', abbreviation: 'TMIN' },
+            6: { parameter: 'Dew Point Temperature', units: 'K', abbreviation: 'DPT' },
+            7: { parameter: 'Dew Point Depression (or Deficit)', units: 'K', abbreviation: 'DEPR' },
+            8: { parameter: 'Lapse Rate', units: 'K m-1', abbreviation: 'LAPR' },
+            9: { parameter: 'Temperature Anomaly', units: 'K', abbreviation: 'TMPA' },
+            10: { parameter: 'Latent Heat Net Flux', units: 'W/m²', abbreviation: 'LHTFL' },
+            11: { parameter: 'Sensible Heat Net Flux', units: 'W/m²', abbreviation: 'SHTFL' },
+            12: { parameter: 'Heat Index', units: 'K', abbreviation: 'HEATX' },
+            13: { parameter: 'Wind Chill Factor', units: 'K', abbreviation: 'WCF' },
+            14: { parameter: 'Minimum Dew Point Depression*', units: 'K', abbreviation: 'MINDPD' },
+            15: { parameter: 'Virtual Potential Temperature', units: 'K', abbreviation: 'VPTMP' },
+            16: { parameter: 'Snow Phase Change Heat Flux', units: 'W/m²', abbreviation: 'SNOHF' },
+            17: { parameter: 'Skin Temperature', units: 'K', abbreviation: 'SKINT' },
+            18: { parameter: 'Snow Temperature (top of snow)', units: 'K', abbreviation: 'SNOT' },
+            19: { parameter: 'Turbulent Transfer Coefficient for Heat', units: 'Numeric', abbreviation: 'TTCHT' },
+            20: { parameter: 'Turbulent Diffusion Coefficient for Heat', units: 'm²1/s', abbreviation: 'TDCHT' },
+            21: { parameter: 'Apparent Temperature **', units: 'K', abbreviation: 'APTMP' },
+            22: { parameter: 'Temperature Tendency due to Short-Wave Radiation', units: 'K/s', abbreviation: 'TTSWR' },
+            23: { parameter: 'Temperature Tendency due to Long-Wave Radiation', units: 'K/s', abbreviation: 'TTLWR' },
+            24: { parameter: 'Temperature Tendency due to Short-Wave Radiation, Clear Sky', units: 'K/s', abbreviation: 'TTSWRCS' },
+            25: { parameter: 'Temperature Tendency due to Long-Wave Radiation, Clear Sky', units: 'K/s', abbreviation: 'TTLWRCS' },
+            26: { parameter: 'Temperature Tendency due to parameterizations', units: 'K/s', abbreviation: 'TTPARM' },
+            27: { parameter: 'Wet Bulb Temperature', units: 'K', abbreviation: 'WETBT' },
+            28: { parameter: 'Unbalanced Component of Temperature', units: 'K', abbreviation: 'UCTMP' },
+            29: { parameter: 'Temperature Advection', units: 'K/s', abbreviation: 'TMPADV' },
+            30: { parameter: 'Latent Heat Net Flux Due to Evaporation', units: 'W/m²', abbreviation: 'LHFLXE' },
+            31: { parameter: 'Latent Heat Net Flux Due to Sublimation', units: 'W/m²', abbreviation: 'LHFLXS' },
+            32: { parameter: 'Wet-Bulb Potential Temperature', units: 'K', abbreviation: 'WETBPT' },
+            //33-191: { parameter: 'Reserved', units: '', abbreviation: '' },
+            192: { parameter: 'Snow Phase Change Heat Flux', units: 'W/m²', abbreviation: 'SNOHF' },
+            //192 - 254: { parameter: 'Reserved for Local Use', units: '', abbreviation: '' },
+            193: { parameter: 'Temperature Tendency by All Radiation', units: 'K/s', abbreviation: 'TTRAD' },
+            194: { parameter: 'Relative Error Variance', units: '', abbreviation: 'REV' },
+            195: { parameter: 'Large Scale Condensate Heating Rate', units: 'K/s', abbreviation: 'LRGHR' },
+            196: { parameter: 'Deep Convective Heating Rate', units: 'K/s', abbreviation: 'CNVHR' },
+            197: { parameter: 'Total Downward Heat Flux at Surface', units: 'W/m²', abbreviation: 'THFLX' },
+            198: { parameter: 'Temperature Tendency by All Physics', units: 'K/s', abbreviation: 'TTDIA' },
+            199: { parameter: 'Temperature Tendency by Non-radiation Physics', units: 'K/s', abbreviation: 'TTPHY' },
+            200: { parameter: 'Standard Dev. of IR Temp. over 1x1 deg. area', units: 'K', abbreviation: 'TSD1D' },
+            201: { parameter: 'Shallow Convective Heating Rate', units: 'K/s', abbreviation: 'SHAHR' },
+            202: { parameter: 'Vertical Diffusion Heating rate', units: 'K/s', abbreviation: 'VDFHR' },
+            203: { parameter: 'Potential Temperature at Top of Viscous Sublayer', units: 'K', abbreviation: 'THZ0' },
+            204: { parameter: 'Tropical Cyclone Heat Potential', units: 'Jm-2K', abbreviation: 'TCHP' },
+            205: { parameter: 'Effective Layer (EL) Temperature', units: 'C', abbreviation: 'ELMELT' },
+            206: { parameter: 'Wet Bulb Globe Temperature', units: 'K', abbreviation: 'WETGLBT' },
+            255: { parameter: 'Missing', units: '', abbreviation: '' }
+        },
+        '4.2-0-2': { // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-2-0-2.shtml
+            0: { parameter: 'Wind Direction (from which blowing)', units: '°', abbreviation: 'WDIR' },
+            1: { parameter: 'Wind Speed', units: 'm/s', abbreviation: 'WIND' },
+            2: { parameter: 'U-Component of Wind', units: 'm/s', abbreviation: 'UGRD' },
+            3: { parameter: 'V-Component of Wind', units: 'm/s', abbreviation: 'VGRD' },
+            4: { parameter: 'Stream Function', units: 'm²/s', abbreviation: 'STRM' },
+            5: { parameter: 'Velocity Potential', units: 'm²/s', abbreviation: 'VPOT' },
+            6: { parameter: 'Montgomery Stream Function', units: 'm²/s²', abbreviation: 'MNTSF' },
+            7: { parameter: 'Sigma Coordinate Vertical Velocity', units: '1/s', abbreviation: 'SGCVV' },
+            8: { parameter: 'Vertical Velocity (Pressure)', units: 'Pa/s', abbreviation: 'VVEL' },
+            9: { parameter: 'Vertical Velocity (Geometric)', units: 'm/s', abbreviation: 'DZDT' },
+            10: { parameter: 'Absolute Vorticity', units: '1/s', abbreviation: 'ABSV' },
+            11: { parameter: 'Absolute Divergence', units: '1/s', abbreviation: 'ABSD' },
+            12: { parameter: 'Relative Vorticity', units: '1/s', abbreviation: 'RELV' },
+            13: { parameter: 'Relative Divergence', units: '1/s', abbreviation: 'RELD' },
+            14: { parameter: 'Potential Vorticity', units: 'K m² kg-1/s', abbreviation: 'PVORT' },
+            15: { parameter: 'Vertical U-Component Shear', units: '1/s', abbreviation: 'VUCSH' },
+            16: { parameter: 'Vertical V-Component Shear', units: '1/s', abbreviation: 'VVCSH' },
+            17: { parameter: 'Momentum Flux, U-Component', units: 'N/m²', abbreviation: 'UFLX' },
+            18: { parameter: 'Momentum Flux, V-Component', units: 'N/m²', abbreviation: 'VFLX' },
+            19: { parameter: 'Wind Mixing Energy', units: 'J', abbreviation: 'WMIXE' },
+            20: { parameter: 'Boundary Layer Dissipation', units: 'W/m²', abbreviation: 'BLYDP' },
+            21: { parameter: 'Maximum Wind Speed *', units: 'm/s', abbreviation: 'MAXGUST' },
+            22: { parameter: 'Wind Speed (Gust)', units: 'm/s', abbreviation: 'GUST' },
+            23: { parameter: 'U-Component of Wind (Gust)', units: 'm/s', abbreviation: 'UGUST' },
+            24: { parameter: 'V-Component of Wind (Gust)', units: 'm/s', abbreviation: 'VGUST' },
+            25: { parameter: 'Vertical Speed Shear', units: '1/s', abbreviation: 'VWSH' },
+            26: { parameter: 'Horizontal Momentum Flux', units: 'N/m²', abbreviation: 'MFLX' },
+            27: { parameter: 'U-Component Storm Motion', units: 'm/s', abbreviation: 'USTM' },
+            28: { parameter: 'V-Component Storm Motion', units: 'm/s', abbreviation: 'VSTM' },
+            29: { parameter: 'Drag Coefficient', units: 'Numeric', abbreviation: 'CD' },
+            30: { parameter: 'Frictional Velocity', units: 'm/s', abbreviation: 'FRICV' },
+            31: { parameter: 'Turbulent Diffusion Coefficient for Momentum', units: 'm²/s', abbreviation: 'TDCMOM' },
+            32: { parameter: 'Eta Coordinate Vertical Velocity', units: '1/s', abbreviation: 'ETACVV' },
+            33: { parameter: 'Wind Fetch', units: 'm', abbreviation: 'WINDF' },
+            34: { parameter: 'Normal Wind Component **', units: 'm/s', abbreviation: 'NWIND' },
+            35: { parameter: 'Tangential Wind Component **', units: 'm/s', abbreviation: 'TWIND' },
+            36: { parameter: 'Amplitude Function for Rossby Wave Envelope for Meridional Wind ***', units: 'm/s', abbreviation: 'AFRWE' },
+            37: { parameter: 'Northward Turbulent Surface Stress ****', units: 'N/m² s', abbreviation: 'NTSS' },
+            38: { parameter: 'Eastward Turbulent Surface Stress ****', units: 'N/m² s', abbreviation: 'ETSS' },
+            39: { parameter: 'Eastward Wind Tendency Due to Parameterizations', units: 'm/s²', abbreviation: 'EWTPARM' },
+            40: { parameter: 'Northward Wind Tendency Due to Parameterizations', units: 'm/s²', abbreviation: 'NWTPARM' },
+            41: { parameter: 'U-Component of Geostrophic Wind', units: 'm/s', abbreviation: 'UGWIND' },
+            42: { parameter: 'V-Component of Geostrophic Wind', units: 'm/s', abbreviation: 'VGWIND' },
+            43: { parameter: 'Geostrophic Wind Direction', units: '°', abbreviation: 'GEOWD' },
+            44: { parameter: 'Geostrophic Wind Speed', units: 'm/s', abbreviation: 'GEOWS' },
+            45: { parameter: 'Unbalanced Component of Divergence', units: '1/s', abbreviation: 'UNDIV' },
+            46: { parameter: 'Vorticity Advection', units: 's-2', abbreviation: 'VORTADV' },
+            47: { parameter: 'Surface roughness for heat,(see Note 5)', units: 'm', abbreviation: 'SFRHEAT' },
+            48: { parameter: 'Surface roughness for moisture,(see Note 6)', units: 'm', abbreviation: 'SFRMOIST' },
+            //49-191: {parameter: 'Reserved', units: '', abbreviation: ''},
+            192: { parameter: 'Vertical Speed Shear', units: '1/s', abbreviation: 'VWSH' },
+            //192-254: {parameter: 'Reserved for Local Use', units: '', abbreviation: ''},
+            193: { parameter: 'Horizontal Momentum Flux', units: 'N/m²', abbreviation: 'MFLX' },
+            194: { parameter: 'U-Component Storm Motion', units: 'm/s', abbreviation: 'USTM' },
+            195: { parameter: 'V-Component Storm Motion', units: 'm/s', abbreviation: 'VSTM' },
+            196: { parameter: 'Drag Coefficient', units: 'non-dim', abbreviation: 'CD' },
+            197: { parameter: 'Frictional Velocity', units: 'm/s', abbreviation: 'FRICV' },
+            198: { parameter: 'Latitude of U Wind Component of Velocity', units: 'deg', abbreviation: 'LAUV' },
+            199: { parameter: 'Longitude of U Wind Component of Velocity', units: 'deg', abbreviation: 'LOUV' },
+            200: { parameter: 'Latitude of V Wind Component of Velocity', units: 'deg', abbreviation: 'LAVV' },
+            201: { parameter: 'Longitude of V Wind Component of Velocity', units: 'deg', abbreviation: 'LOVV' },
+            202: { parameter: 'Latitude of Presure Point', units: 'deg', abbreviation: 'LAPP' },
+            203: { parameter: 'Longitude of Presure Point', units: 'deg', abbreviation: 'LOPP' },
+            204: { parameter: 'Vertical Eddy Diffusivity Heat exchange', units: 'm²/s', abbreviation: 'VEDH' },
+            205: { parameter: 'Covariance between Meridional and ZonalComponents of the wind.', units: 'm²/s²', abbreviation: 'COVMZ' },
+            206: { parameter: 'Covariance between Temperature and ZonalComponents of the wind.', units: 'K*m/s', abbreviation: 'COVTZ' },
+            207: { parameter: 'Covariance between Temperature and MeridionalComponents of the wind.', units: 'K*m/s', abbreviation: 'COVTM' },
+            208: { parameter: 'Vertical Diffusion Zonal Acceleration', units: 'm/s²', abbreviation: 'VDFUA' },
+            209: { parameter: 'Vertical Diffusion Meridional Acceleration', units: 'm/s²', abbreviation: 'VDFVA' },
+            210: { parameter: 'Gravity wave drag zonal acceleration', units: 'm/s²', abbreviation: 'GWDU' },
+            211: { parameter: 'Gravity wave drag meridional acceleration', units: 'm/s²', abbreviation: 'GWDV' },
+            212: { parameter: 'Convective zonal momentum mixing acceleration', units: 'm/s²', abbreviation: 'CNVU' },
+            213: { parameter: 'Convective meridional momentum mixing acceleration', units: 'm/s²', abbreviation: 'CNVV' },
+            214: { parameter: 'Tendency of vertical velocity', units: 'm/s²', abbreviation: 'WTEND' },
+            215: { parameter: 'Omega (Dp/Dt) divide by density', units: 'K', abbreviation: 'OMGALF' },
+            216: { parameter: 'Convective Gravity wave drag zonal acceleration', units: 'm/s²', abbreviation: 'CNGWDU' },
+            217: { parameter: 'Convective Gravity wave drag meridional acceleration', units: 'm/s²', abbreviation: 'CNGWDV' },
+            218: { parameter: 'Velocity Point Model Surface', units: '', abbreviation: 'LMV' },
+            219: { parameter: 'Potential Vorticity (Mass-Weighted)', units: '1/s/m', abbreviation: 'PVMWW' },
+            220: { parameter: 'Hourly Maximum of Upward Vertical Velocity', units: 'm/s', abbreviation: 'MAXUVV' },
+            221: { parameter: 'Hourly Maximum of Downward Vertical Velocity', units: 'm/s', abbreviation: 'MAXDVV' },
+            222: { parameter: 'U Component of Hourly Maximum 10m Wind Speed', units: 'm/s', abbreviation: 'MAXUW' },
+            223: { parameter: 'V Component of Hourly Maximum 10m Wind Speed', units: 'm/s', abbreviation: 'MAXVW' },
+            224: { parameter: 'Ventilation Rate', units: 'm²/s', abbreviation: 'VRATE' },
+            225: { parameter: 'Transport Wind Speed', units: 'm/s', abbreviation: 'TRWSPD' },
+            226: { parameter: 'Transport Wind Direction', units: 'Deg', abbreviation: 'TRWDIR' },
+            227: { parameter: 'Earliest Reasonable Arrival Time (10% exceedance)', units: 's', abbreviation: 'TOA10' },
+            228: { parameter: 'Most Likely Arrival Time (50% exceedance)', units: 's', abbreviation: 'TOA50' },
+            229: { parameter: 'Most Likely Departure Time (50% exceedance)', units: 's', abbreviation: 'TOD50' },
+            230: { parameter: 'Latest Reasonable Departure Time (90% exceedance)', units: 's', abbreviation: 'TOD90' },
+            231: { parameter: 'Tropical Wind Direction', units: '°', abbreviation: 'TPWDIR' },
+            232: { parameter: 'Tropical Wind Speed', units: 'm/s', abbreviation: 'TPWSPD' },
+            233: { parameter: 'Inflow Based (ESFC) to 50% EL Shear Magnitude', units: 'kt', abbreviation: 'ESHR' },
+            234: { parameter: 'U Component Inflow Based to 50% EL Shear Vector', units: 'kt', abbreviation: 'UESH' },
+            235: { parameter: 'V Component Inflow Based to 50% EL Shear Vector', units: 'kt', abbreviation: 'VESH' },
+            236: { parameter: 'U Component Bunkers Effective Right Motion', units: 'kt', abbreviation: 'UEID' },
+            237: { parameter: 'V Component Bunkers Effective Right Motion', units: 'kt', abbreviation: 'VEID' },
+            255: { parameter: 'Missing', units: '', abbreviation: '' }
+        },
+        '4.2-10-1': { // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-2-10-1.shtml
+            0: { parameter: 'Current Direction', units: 'degree True', abbreviation: 'DIRC' },
+            1: { parameter: 'Current Speed', units: 'm/s', abbreviation: 'SPC' },
+            2: { parameter: 'U-Component of Current', units: 'm/s', abbreviation: 'UOGRD' },
+            3: { parameter: 'V-Component of Current', units: 'm/s', abbreviation: 'VOGRD' },
+            4: { parameter: 'Rip Current Occurrence Probability', units: '%', abbreviation: 'RIPCOP' },
+            //5-191: {parameter: 'Reserved', units: '', abbreviation: ''},
+            192: { parameter: 'Ocean Mixed Layer U Velocity', units: 'm/s', abbreviation: 'OMLU' },
+            //192-254: {parameter: 'Reserved for Local Use', units: '', abbreviation: ''},
+            193: { parameter: 'Ocean Mixed Layer V Velocity', units: 'm/s', abbreviation: 'OMLV' },
+            194: { parameter: 'Barotropic U velocity', units: 'm/s', abbreviation: 'UBARO' },
+            195: { parameter: 'Barotropic V velocity', units: 'm/s', abbreviation: 'VBARO' },
+            255: { parameter: 'Missing', units: '', abbreviation: '' }
+        },
+        '4.2-10-2': { // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-2-10-2.shtml
+            0: { parameter: 'Ice Cover', units: 'Proportion', abbreviation: 'ICEC' },
+            1: { parameter: 'Ice Thickness', units: 'm', abbreviation: 'ICETK' },
+            2: { parameter: 'Direction of Ice Drift', units: 'degree True', abbreviation: 'DICED' },
+            3: { parameter: 'Speed of Ice Drift', units: 'm/s', abbreviation: 'SICED' },
+            4: { parameter: 'U-Component of Ice Drift', units: 'm/s', abbreviation: 'UICE' },
+            5: { parameter: 'V-Component of Ice Drift', units: 'm/s', abbreviation: 'VICE' },
+            6: { parameter: 'Ice Growth Rate', units: 'm/s', abbreviation: 'ICEG' },
+            7: { parameter: 'Ice Divergence', units: '1/s', abbreviation: 'ICED' },
+            8: { parameter: 'Ice Temperature', units: 'K', abbreviation: 'ICETMP' },
+            9: { parameter: 'Module of Ice Internal Pressure', units: 'Pa m', abbreviation: 'ICEPRS' },
+            10: { parameter: 'Zonal Vector Component of Vertically Integrated Ice Internal Pressure', units: 'Pa m', abbreviation: 'ZVCICEP' },
+            11: { parameter: 'Meridional Vector Component of Vertically Integrated Ice Internal Pressure', units: 'Pa m', abbreviation: 'MVCICEP' },
+            12: { parameter: 'Compressive Ice Strength', units: 'N m-1', abbreviation: 'CICES' },
+            13: { parameter: 'Snow Temperature (over sea ice)', units: 'K', abbreviation: 'SNOWTSI' },
+            14: { parameter: 'Albedo', units: 'Numeric', abbreviation: 'ALBICE' },
+            //15-191: {parameter: 'Reserved', units: '', abbreviation: ''},
+            //192-254: {parameter: 'Reserved for Local Use', units: '', abbreviation: ''},
+            255: { parameter: 'Missing', units: '', abbreviation: '' }
+        },
+
 
         // Data Representation Template Number
         '5.0' : { // https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table5-0.shtml
@@ -3765,6 +3954,7 @@ class GRIB2 {
 }
 
 /*
+// TEMPLATES
 var el = document.getElementsByTagName('tbody')[0]
 var empty = {};
 for (var i = 1; i< el.children.length; i++){
@@ -3810,5 +4000,27 @@ for (var i = 0; i < keys.length; i++){
     jsonArray[i]= json;
 }
 console.log(JSON.stringify(jsonArray))
+
+*/
+
+/*
+// PRODUCT STATIC TABLES
+var el = document.getElementsByTagName('tbody')[0]
+var empty = {};
+for (var i = 1; i< el.children.length; i++){
+    if (el.children[i].children.length != 0){
+        var key = el.children[i].children[0].innerText;
+        key = key.replace('\n', '');
+        var parameter = el.children[i].children[1].innerText.replace('\n', '');
+        var units = el.children[i].children[2].innerText.replace('\n', '');
+        var abbreviation = el.children[i].children[3].innerText.replace('\n', '');
+        empty[key] = {
+            parameter,
+            units,
+            abbreviation
+        }
+    }
+}
+empty
 
 */

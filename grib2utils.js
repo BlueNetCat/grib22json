@@ -104,6 +104,9 @@ const decodeGRIB2Buffer = function (buffer, myGrib) {
         return;
     }
 
+    // Discipline
+    console.log(myGrib.dataTemplate[0][2].info + ": " + myGrib.dataTemplate[0][2].contentRef + "(" + myGrib.dataTemplate[0][2].content + ")");
+
     // Separate section buffers
     let sectionByteIndex = 16;
     let sectionBuffers = myGrib.sectionBuffers;
@@ -144,7 +147,6 @@ const decodeGRIB2Buffer = function (buffer, myGrib) {
 // Parse data
 const parseData = function (decodedGrib) {
 
-
     let data = {};
 
     let grid = {};
@@ -180,8 +182,49 @@ const parseData = function (decodedGrib) {
         console.warn("Num values in Section 7: " + numValues + ", Grid points in Section 5: " + grid.numPoints + ". Probably bitmap is present");
 
 
+    // PRODUCT
+    let product = {};
+    // Discipline
+    let disciplineInfo = decodedGrib[0][2].info// Discipline (From Table 0.0)
+    let disciplineNum = decodedGrib[0][2].content;
+    product[disciplineInfo] = decodedGrib[0][2].contentRef;
+    // Product definition template number
+    let productDefInfo = decodedGrib[4][3].info;
+    product[productDefInfo] = decodedGrib[4][3].contentRef;
+    // Discipline is defined
+    if (decodedGrib[0][2].content != 255){ // 255: Missing
+        let paramCatInfo = decodedGrib[4][4].info; // Parameter category (see Code table 4.1)
+        let paramNumInfo = decodedGrib[4][5].info; // Parameter number (see Code table 4.2)
+        let paramCat = decodedGrib[4][4].content;
+        let paramNum = decodedGrib[4][5].content;
+        
+        product[paramCatInfo] = paramCat; // TODO: table missing
+        let parameterCategoryTable = GRIB2.tables['4.2-' + disciplineNum + '-' + paramCat];
+        if (parameterCategoryTable == undefined){
+            console.warn("GRIB2 table 4.2-" + disciplineNum + '-' + paramCat + " not defined.")
+        } else
+            product[paramNumInfo] = parameterCategoryTable[paramNum];
+
+    } else {
+        console.warn('Discipline not defined, therefore no interpretation of product category, paramater, and units.');
+    }
+    
+
+    // if (decodedGrib[0][2].contentRef)
+    // let productDef = decodedGrib[4][3].info; // Product definition template number (See Table 4.0)
+    // let paramCat = decodedGrib[4][4].info; // Parameter category (see Code table 4.1)
+    // let paramNum = decodedGrib[4][5].info; // Parameter number (see Code table 4.2)
+    // data.product = {
+    //     [discipline]: ,
+    //     [productDef]: decodedGrib[4][3].contentRef,
+    //     [paramCat]: decodedGrib[4][4].contentRef, // NEEDS PARSING
+    //     [paramNum]: decodedGrib[4][5].contentRef, // NEEDS PARSING
+    // }
+
     data.grid = grid;
-    console.log(grid);
+    data.product = product;
+    console.log(data.grid);
+    console.log(data.product);
 
 
     // Template number
