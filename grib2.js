@@ -885,11 +885,11 @@ class GRIB2 {
         // Generating Process or Model from Originating Center 7 (US-NWS, NCEP)
         'ON388 Table A': { // https://www.nco.ncep.noaa.gov/pmb/docs/on388/tablea.html
             //00-01: 'Reserved',
-            02: 'Ultra Violet Index Model',
-            03: 'NCEP/ARL Transport and Dispersion Model',
-            04: 'NCEP/ARL Smoke Model',
-            05: 'Satellite Derived Precipitation and temperatures, from IR (See PDS Octet 41 ... for specific satellite ID)',
-            06: 'NCEP/ARL Dust Model',
+            2: 'Ultra Violet Index Model',
+            3: 'NCEP/ARL Transport and Dispersion Model',
+            4: 'NCEP/ARL Smoke Model',
+            5: 'Satellite Derived Precipitation and temperatures, from IR (See PDS Octet 41 ... for specific satellite ID)',
+            6: 'NCEP/ARL Dust Model',
             //07-09: 'Reserved',
             10: 'Global Wind-Wave Forecast Model',
             11: 'Global Multi-Grid Wave Model (Static Grids)',
