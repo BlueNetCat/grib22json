@@ -4,6 +4,9 @@
     <!-- Open layers map -->
     <div id="map" v-on:drop="onDropFile($event)" v-on:dragover="onDragOver($event)" class="map position-absolute vh-100 vw-100"></div>
 
+    <!-- Animation canvas -->
+    <animation-canvas ref="animcanvas"></animation-canvas>
+
     <!-- Drag and drop info -->
     <div class="position-absolute container-fluid" style="text-align: center;max-width: 100%;"> Drag and drop you GRIB files anywhere in the map </div>
 
@@ -29,6 +32,7 @@
 <script>
 // Import components
 //import Map from "Map.vue";
+import AnimationCanvas from "AnimationCanvas.vue"
 
 export default {
   name: "grib-manager",
@@ -40,15 +44,16 @@ export default {
     this.map = new ol.Map({
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.TileWMS({
-                    url: 'https://ahocevar.com/geoserver/wms',
-                    params: {
-                        'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
-                        'TILED': true,
-                    },
-                    cacheSize: 500,
-                    crossOrigin: 'anonymous',
-                }),
+              source: new ol.source.OSM()
+                // source: new ol.source.TileWMS({
+                //   // url: 'https://ahocevar.com/geoserver/wms',
+                //   // params: {
+                //   //   'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
+                //   //   'TILED': true,
+                //   // },
+                //     cacheSize: 500,
+                //     crossOrigin: 'anonymous',
+                // }),
             }),
         ],
         target: 'map',
@@ -63,6 +68,7 @@ export default {
     //fetch('datasets/COSMODE_single_level_elements_ASWDIR_S_2018011803_006.grib2')
     fetch('datasets/gdas.t00z.pgrb2.0p25.f000.grib2') // temperature in kelvins
     //fetch('datasets/gdas.t00z.pgrb2.1p00.f000.grib2') // winds
+    //fetch('datasets/CODAR_EBRO_2022_05_16_0200-fromnc.grib2')
     //fetch('datasets/winds.grb')
         .then(response => response.arrayBuffer())
         .then(buffer => decodeGRIB2File(buffer))
@@ -154,6 +160,49 @@ export default {
 
         let extent = [minLon, minLat, maxLon, maxLat];
 
+        // Known data product
+        let measureName;
+        if (gribFile.data.product['Parameter number (see Code table 4.2)']){
+          let measureAbbr = gribFile.data.product['Parameter number (see Code table 4.2)'].abbreviation;
+          measureName = gribFile.data.product['Parameter number (see Code table 4.2)'].parameter;
+
+          // Current
+          if (measureAbbr == 'UOGRD'){ // current
+            this.uo = gribFile;
+          } else if (measureAbbr == 'VOGRD') // current
+            this.vo = gribFile;
+          if (this.uo && this.vo){
+            // Create animation
+            if (this.$refs.animcanvas){
+              let info = {
+                name: fName + "-" + measureName,
+                tooltip: measureName,
+              }
+              this.$refs.animcanvas.createAnimation(info, this.uo, this.vo, this.map, "velocity");
+            }
+            this.uo = undefined;
+            this.vo = undefined;
+          }
+
+          // Wind (quick code, needs to improve)
+          if (measureAbbr == 'UGRD') { // current
+            this.u = gribFile;
+          } else if (measureAbbr == 'VGRD') // current
+            this.v = gribFile;
+          if (this.u && this.v) {
+            // Create animation
+            if (this.$refs.animcanvas) {
+              let info = {
+                name: fName + "-" + measureName,
+                tooltip: measureName,
+              }
+              this.$refs.animcanvas.createAnimation(info, this.u, this.v, this.map, "wind");
+            }
+            this.u = undefined;
+            this.v = undefined;
+          }
+        } 
+
         //console.log(extent);
         let imageLayer = new ol.layer.Image({
             source: new ol.source.ImageStatic({
@@ -165,13 +214,13 @@ export default {
         });
         
         this.map.addLayer(imageLayer);
-        this.addLayerHTML(fName + " - " + j, imageLayer);
+        this.addLayerHTML(fName + " - " + j + " - " + measureName, imageLayer);
       }
     },
 
   },
   components: {
-
+    "animation-canvas": AnimationCanvas,
   },
   computed: {
   }
