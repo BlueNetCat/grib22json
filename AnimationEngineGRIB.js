@@ -377,11 +377,18 @@ class SourceData {
     this.animation = animation;
 
     // Get max and min values
-    this.maxValue = dataMatrix[0][0][0];
+    // WHY IS THIS NECESSARY? FOR ANIMATION PATH?
+    this.maxValue =  -Infinity;
+    
     for (let i = 0; i < dataMatrix.length; i++){
       for (let j = 0; j < dataMatrix[0].length; j++){
-        this.maxValue = Math.max(this.maxValue, Math.abs(dataMatrix[i][j][0]));
-        this.maxValue = Math.max(this.maxValue, Math.abs(dataMatrix[i][j][1]));
+        let valueU = dataMatrix[i][j][0];
+        let valueV = dataMatrix[i][j][1];
+        if (!isNaN(valueU) && !isNaN(valueV)){
+          this.maxValue = Math.max(this.maxValue, Math.abs(valueU));
+          this.maxValue = Math.max(this.maxValue, Math.abs(valueV));
+        }
+        
       }
     }
 
@@ -403,8 +410,8 @@ class SourceData {
     
     value[0] = this.dataMatrix[iIndex][jIndex][0];
     value[1] = this.dataMatrix[iIndex][jIndex][1];
-    value[0] = value[0] === null ? undefined : value[0];
-    value[1] = value[1] === null ? undefined : value[1];
+    value[0] = (value[0] === null || isNaN(value[0])) ? undefined : value[0];
+    value[1] = (value[1] === null || isNaN(value[1])) ? undefined : value[1];
 
     // Find location
     return value;
