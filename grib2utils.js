@@ -48,17 +48,19 @@ const getImgElement = function (data) {
     var ctx = canvas.getContext("2d");
     var imgData = ctx.createImageData(canvas.width, canvas.height);
 
-    var max = data.values[0];
-    var min = data.values[0];
+    var max = -Infinity;
+    var min = Infinity;
     for (let i = 1; i < data.values.length; i++) {
-        max = Math.max(max, data.values[i]);
-        min = Math.min(min, data.values[i]);
+        if (!isNaN(data.values[i])){
+            max = Math.max(max, data.values[i]);
+            min = Math.min(min, data.values[i]);
+        }
     }
 
     // How data points are stored is specified in section 3
     for (let i = 0; i < imgData.data.length; i += 4) {
         let value = data.values[i / 4];
-        let alpha = data.values[i / 4] === null ? 0 : 255;
+        let alpha = (data.values[i / 4] === null || isNaN(data.values[i / 4])) ? 0 : 255;
         let normValue = (value - min) / (max - min);
 
         imgData.data[i + 0] = normValue * 255;
@@ -523,8 +525,8 @@ const parseData = function (decodedGrib) {
     if (grid.scanningMode[7][0] == 1) console.error('TODO: Scanning mode: 8th bit at https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table3-4.shtml')
 
 
-
-    //console.log(data.values);
+    console.log("DATA VALUES: ------");
+    console.log(data.values);
 
 
 
